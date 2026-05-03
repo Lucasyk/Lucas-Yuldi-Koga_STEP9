@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Http\Requests\UpdateAccountRequest;
 
 class TestController extends Controller
 {
@@ -102,8 +103,15 @@ public function myProducts()
 
     return view('mypage-products', compact('products'));
 }
-public function inquiry(){
+public function inquiry()
+{
     return view('inquiry');
+}
+
+public function inquirySubmit(Request $request)
+{
+    // for now just test
+    return redirect()->route('inquiry')->with('success', '送信しました！');
 }
 public function store(Request $request)
 {
@@ -204,23 +212,11 @@ public function registerSubmit(Request $request)
 
     return redirect()->route('mypage');
 }
-public function updateAccount(Request $request)
+public function updateAccount(UpdateAccountRequest $request)
 {
     $user = Auth::user();
 
-    $request->validate([
-        'username' => 'required|max:255',
-        'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-        'full_name' => 'required|max:255',
-        'kana' => 'required|max:255',
-    ]);
-
-    $user->update([
-        'username' => $request->username,
-        'email' => $request->email,
-        'full_name' => $request->full_name,
-        'kana' => $request->kana,
-    ]);
+    $user->update($request->validated());
 
     return redirect()->route('mypage');
 }

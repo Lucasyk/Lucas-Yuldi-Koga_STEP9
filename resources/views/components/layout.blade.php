@@ -29,7 +29,7 @@
 </header>
     <main>{{$slot}}</main>
     <footer>
-        <a href="{{ route("inquiry"); }}">お問い合わせ</a>
+        <a href="{{ route("inquiry") }}">お問い合わせ</a>
         <a href="#">Home</a>
         <a href="#">マイページ</a>
         <hr>

@@ -29,6 +29,7 @@ Route::post('/account/edit', [TestController::class, 'updateAccount'])->name('ac
 Route::get('/mypage/products', [TestController::class, 'myProducts'])->name('mypage.products');
 
 Route::get("/inquiry", [TestController::class, "inquiry"])->name('inquiry');
+Route::post('/inquiry', [TestController::class, 'inquirySubmit'])->name('inquiry.submit');
 
 Route::post('/products', [TestController::class, 'store'])->name('products.store');
 
