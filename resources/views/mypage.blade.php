@@ -6,13 +6,13 @@
 
         <div class="user-info">
             <div>
-                <p>ユーザ名: {{ session('user.name') ?? 'Cy' }}</p>
-                <p>Eメール: cy.com</p>
+                <p>ユーザ名: {{ $user->name }}</p>
+                <p>Eメール: {{ $user->email }}</p>
             </div>
 
             <div>
-                <p>名前：山田太郎</p>
-                <p>カナ：ヤマダタロウ</p>
+                <p>名前：{{ $user->name }}</p>
+                <p>カナ：未登録</p>
             </div>
         </div>
 
@@ -37,11 +37,16 @@
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->product_name }}</td>
                         <td>{{ $product->description }}</td>
+                        <td>@if ($product->img_path)
+    <img src="{{ asset('storage/' . $product->img_path) }}" alt="{{ $product->product_name }}" class="product-img">
+@else
+    <div class="no-image">No Image</div>
+@endif</td>
                         <td>{{ $product->price }}</td>
                         <td>
-                            <a href="{{ route('products.show', $product->id) }}" class="green-btn">
-                                詳細
-                            </a>
+                            <a href="{{ route('products.sale.show', $product->id) }}" class="green-btn">
+    詳細
+</a>
                         </td>
                     </tr>
                 @endforeach

@@ -1,33 +1,29 @@
 <x-layout>
-    <section class="product-create-page">
-        <div class="product-create-card">
-            <h1>商品登録</h1>
+    <section class="product-register-page">
+        <h1>商品登録</h1>
 
-            <form method="POST" action="{{ route('products.store') }}">
-    @csrf
+        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
+            @csrf
 
-    <div class="form-group">
-        <label>商品名</label>
-        <input type="text" name="product_name">
-    </div>
+            <label>商品名</label>
+            <input type="text" name="product_name">
 
-    <div class="form-group">
-        <label>価格</label>
-        <input type="number" name="price">
-    </div>
+            <label>価格</label>
+            <input type="number" name="price">
 
-    <div class="form-group">
-        <label>在庫</label>
-        <input type="number" name="stock">
-    </div>
+            <label>商品説明</label>
+            <textarea name="description"></textarea>
 
-    <div class="form-group">
-        <label>説明</label>
-        <textarea name="description"></textarea>
-    </div>
+            <label>在庫数</label>
+            <input type="number" name="stock">
 
-    <button class="submit-btn">登録する</button>
-</form>
-        </div>
+            <label>商品画像</label>
+            <input type="file" name="img_path">
+
+            <div class="form-buttons">
+                <a href="{{ route('mypage') }}" class="gray-btn">戻る</a>
+                <button type="submit" class="blue-btn">登録</button>
+            </div>
+        </form>
     </section>
 </x-layout>

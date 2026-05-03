@@ -550,3 +550,183 @@ footer hr {
     text-align: center;
     margin-bottom: 25px;
 }   
+
+.product-register-page {
+    padding: 20px;
+}
+
+.product-register-page h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.product-register-page form {
+    width: 100%;
+}
+
+.product-register-page label {
+    display: block;
+    margin: 8px 0 4px;
+    font-weight: bold;
+}
+
+.product-register-page input[type="text"],
+.product-register-page input[type="number"],
+.product-register-page textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-register-page textarea {
+    height: 100px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.gray-btn {
+    background: #777;
+    color: white;
+    padding: 9px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.buy-page {
+    padding: 20px;
+}
+
+.buy-page h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.buy-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-bottom: 20px;
+}
+
+.buy-table th,
+.buy-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.buy-table th {
+    width: 180px;
+    background: #f7f7f7;
+}
+
+.buy-table input {
+    width: 120px;
+    padding: 8px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.gray-btn {
+    background: #777;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.show-page {
+    padding: 20px;
+}
+
+.show-page h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.show-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-bottom: 20px;
+}
+
+.show-table th,
+.show-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.show-table th {
+    width: 180px;
+    background: #f7f7f7;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.like-btn {
+    background: #ff4081;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product-img {
+    width: 160px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.no-image {
+    width: 160px;
+    height: 120px;
+    border: 1px solid #ddd;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+}
+
+.sale-show-page {
+    padding: 20px;
+}
+
+.sale-show-page h1 {
+    font-size: 48px;
+    margin-bottom: 35px;
+}
+
+.sale-show-page p {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.sale-show-img {
+    width: 420px;
+    max-width: 100%;
+    margin: 25px 0;
+}
+
+.delete-btn {
+    background: #b94d45;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 5px;
+}

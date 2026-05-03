@@ -3,7 +3,7 @@
         <div class="account-edit-card">
             <h1>アカウント編集</h1>
 
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route("account.update") }}">
                 @csrf
 
                 <div class="form-group">

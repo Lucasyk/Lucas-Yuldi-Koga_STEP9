@@ -10,7 +10,7 @@
     </div>
 
     <div class="access-container">
-        <a href="#">Home</a>
+        <a href="{{ route("shop.index") }}">Home</a>
 
         @auth
             <a href="{{ route('mypage') }}">マイページ</a>

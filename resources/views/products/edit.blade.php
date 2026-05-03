@@ -17,14 +17,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label>商品説明</label>
+                    <textarea name="description">{{ $product->description }}</textarea>
+                </div>
+
+                <div class="form-group">
                     <label>在庫</label>
                     <input type="number" name="stock" value="{{ $product->stock }}">
                 </div>
 
-                <div class="form-group">
-                    <label>説明</label>
-                    <textarea name="description">{{ $product->description }}</textarea>
-                </div>
 
                 <button class="save-btn">更新する</button>
             </form>

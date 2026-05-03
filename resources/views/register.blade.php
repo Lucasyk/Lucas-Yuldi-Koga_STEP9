@@ -2,7 +2,14 @@
     <section class="auth-card">
         <h1>Register</h1>
 
-        <form method="POST" action="{{ route("register.submit"); }}">
+        @if ($errors->any())
+    <div style="color: red;">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
+        <form method="POST" action="{{ route("register.submit") }}">
             @csrf
 
             <div>

@@ -1,28 +1,43 @@
 <x-layout>
     <section class="buy-page">
-        <h1>購入確認</h1>
+        <h1>商品購入</h1>
 
-        <div class="buy-card">
-            <h2>{{ $product->product_name }}</h2>
+        <form method="POST" action="{{ route('purchase.store', $product->id) }}">
+            @csrf
 
-            <p class="buy-price">¥{{ number_format($product['price']) }}</p>
+            <table class="buy-table">
+                <tr>
+                    <th>商品名</th>
+                    <td>{{ $product->product_name }}</td>
+                </tr>
+                <tr>
+                    <th>商品説明</th>
+                    <td>{{ $product->description }}</td>
+                </tr>
+                <tr>
+                  <th>画像:</th>
+                  <td>@if ($product->img_path)
+    <img src="{{ asset('storage/' . $product->img_path) }}" alt="{{ $product->product_name }}" class="product-img">
+@else
+    <div class="no-image">No Image</div>
+@endif</td>
+                </tr>
+                <tr>
+                    <th>価格</th>
+                    <td>¥{{ number_format($product->price) }}</td>
+                </tr>
+                <tr>
+                    <th>購入数</th>
+                    <td>
+                        <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}">
+                    </td>
+                </tr>
+            </table>
 
-            <p>{{ $product['description'] }}</p>
-
-            <form method="POST" action="{{ route('purchase.store', $product->id) }}">
-    @csrf
-
-    <div class="form-group">
-        <label>個数</label>
-        <input type="number" name="quantity" value="1" min="1">
-    </div>
-
-    <button class="buy-btn">購入する</button>
-</form>
-
-            <a href="{{ route('products.show', $product['id']) }}" class="back-link">
-                ← 戻る
-            </a>
-        </div>
+            <div class="form-buttons">
+                <a href="{{ route('products.show', $product->id) }}" class="gray-btn">戻る</a>
+                <button type="submit" class="blue-btn">購入</button>
+            </div>
+        </form>
     </section>
 </x-layout>

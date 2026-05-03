@@ -11,8 +11,8 @@
                     </div>
 
                     <div class="my-product-actions">
-                        <a href="{{ route('products.show', $product['id']) }}">詳細</a>
-                        <a href="{{ route('products.edit', $product['id']) }}">編集</a>
+                        <a href="{{ route('products.show', $product->id) }}">詳細</a>
+                        <a href="{{ route('products.edit', $product->id) }}">編集</a>
                     </div>
                 </div>
             @endforeach

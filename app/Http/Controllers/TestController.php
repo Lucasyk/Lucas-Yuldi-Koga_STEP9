@@ -67,19 +67,23 @@ public function create()
 }   
 public function mypage()
 {
-    $userId = Auth::id();
+    if (!Auth::check()) {
+    return redirect()->route('login');
+}
+    $user = Auth::user();
 
-    $myProducts = Product::where('user_id', $userId)->get();
+    $myProducts = Product::where('user_id', $user->id)->get();
 
-    $purchasedProducts = Sale::where('user_id', $userId)
+    $purchasedProducts = Sale::where('user_id', $user->id)
         ->with('product')
         ->get();
 
-    $likedProducts = Like::where('user_id', $userId)
+    $likedProducts = Like::where('user_id', $user->id)
         ->with('product')
         ->get();
 
     return view('mypage', compact(
+        'user',
         'myProducts',
         'purchasedProducts',
         'likedProducts'
@@ -105,6 +109,12 @@ public function store(Request $request)
     if (!Auth::check()) {
         return redirect()->route('login');
     }
+    $imgPath = null;
+
+    if ($request->hasFile('img_path')) {
+        $imgPath = $request->file('img_path')->store('products', 'public');
+    }
+
     Product::create([
         'user_id' => Auth::id(),
         'company_id' => Auth::user()->company_id,
@@ -112,6 +122,7 @@ public function store(Request $request)
         'price' => $request->price,
         'stock' => $request->stock,
         'description' => $request->description,
+        'img_path' => $imgPath,
     ]);
 
     return redirect()->route('mypage');
@@ -156,9 +167,6 @@ $product->decrement('stock', $request->quantity);
         'quantity' => $request->quantity,
     ]);
 
-    $product->stock -= $request->quantity;
-    $product->save();
-
     return redirect()->route('mypage');
 }
 public function like($id)
@@ -194,5 +202,34 @@ public function registerSubmit(Request $request)
     Auth::login($user);
 
     return redirect()->route('mypage');
+}
+public function updateAccount(Request $request)
+{
+    $user = Auth::user();
+
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+    ]);
+
+    return redirect()->route('mypage');
+}
+public function deleteProduct($id)
+{
+    $product = Product::where('user_id', Auth::id())
+        ->where('id', $id)
+        ->firstOrFail();
+
+    $product->delete();
+
+    return redirect()->route('mypage');
+}
+public function saleShow($id)
+{
+    $product = Product::where('user_id', Auth::id())
+        ->where('id', $id)
+        ->firstOrFail();
+
+    return view('products.sale-show', compact('product'));
 }
 }
