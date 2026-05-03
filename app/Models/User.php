@@ -35,10 +35,13 @@ class User extends Authenticatable
     }
 
     protected $fillable = [
+    'company_id',
+    'username',
+    'full_name',
+    'kana',
     'name',
     'email',
     'password',
-    'company_id',
 ];
 
     public function company()

@@ -12,7 +12,7 @@
 
             <div>
                 <p>名前：{{ $user->name }}</p>
-                <p>カナ：未登録</p>
+                <p>カナ：{{$user->kana}}</p>
             </div>
         </div>
 

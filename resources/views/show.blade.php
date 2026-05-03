@@ -8,7 +8,7 @@
                 <td>{{ $product->product_name }}</td>
             </tr>
             <tr>
-                <th>商品説明:</th>
+                <th>説明:</th>
                 <td>{{ $product->description }}</td>
             </tr>
             <tr>
@@ -20,12 +20,12 @@
 @endif</td>
             </tr>
             <tr>
-                <th>価格:</th>
+                <th>金額:</th>
                 <td>¥{{ number_format($product->price) }}</td>
             </tr>
             <tr>
-                <th>在庫数:</th>
-                <td>{{ $product->stock }}</td>
+                <th>会社:</th>
+                <td>{{ $product->company->company_name ?? '未登録'  }}</td>
             </tr>
         </table>
 

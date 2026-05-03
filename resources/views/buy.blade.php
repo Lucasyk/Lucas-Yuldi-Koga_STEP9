@@ -27,6 +27,10 @@
                     <td>¥{{ number_format($product->price) }}</td>
                 </tr>
                 <tr>
+                  <th>残り</th>
+                  <td>{{$product->stock}}</td>
+                </tr>
+                <tr>
                     <th>購入数</th>
                     <td>
                         <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}">

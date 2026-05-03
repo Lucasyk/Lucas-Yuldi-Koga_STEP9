@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Company;
 
 class Company extends Model
 {
@@ -16,4 +17,8 @@ public function products()
 {
     return $this->hasMany(Product::class);
 }   
+
+public function company(){
+    return $this->belongsTo(Company::class);
+}
 }

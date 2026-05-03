@@ -1,7 +1,7 @@
 <x-layout>
     <section class="product-edit-page">
         <div class="product-edit-card">
-            <h1>商品編集</h1>
+            <h1>出品商品編集</h1>
 
             <form method="POST" action="{{ route('products.update', $product->id) }}">
                 @csrf
@@ -26,6 +26,10 @@
                     <input type="number" name="stock" value="{{ $product->stock }}">
                 </div>
 
+                <div class="form-group">
+                  <label>商品画像</label>
+              <input type="file" name="img_path" value="{{ $product->img_path }}">
+                </div>
 
                 <button class="save-btn">更新する</button>
             </form>

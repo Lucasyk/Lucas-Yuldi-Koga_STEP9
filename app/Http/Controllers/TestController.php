@@ -13,17 +13,6 @@ use App\Models\User;
 
 class TestController extends Controller
 {
-    public function __construct()
-{
-    $this->middleware('auth')->except([
-        'index',
-        'show',
-        'login',
-        'loginSubmit',
-        'register',
-        'registerSubmit'
-    ]);
-}
     public function login()
 {
     return view('login');
@@ -78,7 +67,10 @@ public function create()
 }   
 public function mypage()
 {
-    
+    if(!Auth::check()){
+        return redirect()->route("login");
+    }       
+
     $user = Auth::user();
 
     $myProducts = Product::where('user_id', $user->id)->get();
@@ -216,9 +208,18 @@ public function updateAccount(Request $request)
 {
     $user = Auth::user();
 
+    $request->validate([
+        'username' => 'required|max:255',
+        'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        'full_name' => 'required|max:255',
+        'kana' => 'required|max:255',
+    ]);
+
     $user->update([
-        'name' => $request->name,
+        'username' => $request->username,
         'email' => $request->email,
+        'full_name' => $request->full_name,
+        'kana' => $request->kana,
     ]);
 
     return redirect()->route('mypage');
