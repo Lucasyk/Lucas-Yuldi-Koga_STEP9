@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\User;
+use App\Models\Company;
+use App\Models\Sale;
+use App\Models\Like;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -29,4 +33,31 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $fillable = [
+    'name',
+    'email',
+    'password',
+    'company_id',
+];
+
+    public function company()
+{
+    return $this->belongsTo(Company::class);
+}
+
+public function products()
+{
+    return $this->hasMany(Product::class);
+}
+
+public function sales()
+{
+    return $this->hasMany(Sale::class);
+}
+
+public function likes()
+{
+    return $this->hasMany(Like::class);
+}
 }
