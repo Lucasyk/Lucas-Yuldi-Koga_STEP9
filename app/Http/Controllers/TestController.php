@@ -13,6 +13,17 @@ use App\Models\User;
 
 class TestController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('auth')->except([
+        'index',
+        'show',
+        'login',
+        'loginSubmit',
+        'register',
+        'registerSubmit'
+    ]);
+}
     public function login()
 {
     return view('login');
@@ -67,9 +78,7 @@ public function create()
 }   
 public function mypage()
 {
-    if (!Auth::check()) {
-    return redirect()->route('login');
-}
+    
     $user = Auth::user();
 
     $myProducts = Product::where('user_id', $user->id)->get();
