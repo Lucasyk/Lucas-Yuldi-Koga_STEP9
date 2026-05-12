@@ -25,28 +25,31 @@
             <thead>
                 <tr>
                     <th>商品番号</th>
+                    <th>画像</th>
                     <th>商品名</th>
                     <th>商品説明</th>
                     <th>料金(¥)</th>
-                    <th></th>
+                    <th>詳細</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($myProducts as $product)
                     <tr>
                         <td>{{ $product->id }}</td>
+                        <td>
+                            @if ($product->img_path)
+                                <img src="{{ asset('storage/' . $product->img_path) }}" class="product-img">
+                            @else
+                                画像なし
+                            @endif
+                        </td>
                         <td>{{ $product->product_name }}</td>
                         <td>{{ $product->description }}</td>
-                        <td>@if ($product->img_path)
-    <img src="{{ asset('storage/' . $product->img_path) }}" alt="{{ $product->product_name }}" class="product-img">
-@else
-    <div class="no-image">No Image</div>
-@endif</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ number_format($product->price) }}</td>
                         <td>
                             <a href="{{ route('products.sale.show', $product->id) }}" class="green-btn">
-    詳細
-</a>
+                                詳細
+                            </a>
                         </td>
                     </tr>
                 @endforeach
