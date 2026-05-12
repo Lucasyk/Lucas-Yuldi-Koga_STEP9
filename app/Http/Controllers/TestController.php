@@ -44,9 +44,23 @@ public function logout(Request $request)
     public function register(){
         return view("register");
     }
-    public function index()
+    public function index(Request $request)
 {
-    $products = Product::with('company')->get();
+    $query = Product::query();
+
+    if ($request->filled('keyword')) {
+        $query->where('product_name', 'like', '%' . $request->keyword . '%');
+    }
+
+    if ($request->filled('min_price')) {
+        $query->where('price', '>=', $request->min_price);
+    }
+
+    if ($request->filled('max_price')) {
+        $query->where('price', '<=', $request->max_price);
+    }
+
+    $products = $query->get();
 
     return view('index', compact('products'));
 }

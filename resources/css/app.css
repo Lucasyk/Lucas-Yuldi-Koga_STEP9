@@ -633,3 +633,40 @@ footer hr {
 .product-list-table img {
     width: 120px;
 }
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.search-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.product-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.product-list-table th,
+.product-list-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.product-list-table th {
+    background: #f7f7f7;
+}
+
+.product-img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+}
