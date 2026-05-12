@@ -147,14 +147,20 @@ public function updateProduct(Request $request, $id)
 {
     $product = Product::findOrFail($id);
 
-    $product->update([
+    $data = [
         'product_name' => $request->product_name,
         'price' => $request->price,
         'stock' => $request->stock,
         'description' => $request->description,
-    ]);
+    ];
 
-    return redirect()->route('products.show', $product->id);
+    if ($request->hasFile('img_path')) {
+        $data['img_path'] = $request->file('img_path')->store('products', 'public');
+    }
+
+    $product->update($data);
+
+    return redirect()->route('products.sale.show', $product->id);
 }
 public function purchase(Request $request, $id)
 {
