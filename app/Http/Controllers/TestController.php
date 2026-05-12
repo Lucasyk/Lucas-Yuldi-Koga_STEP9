@@ -46,7 +46,7 @@ public function logout(Request $request)
     }
     public function index()
 {
-    $products = Product::all();
+    $products = Product::with('company')->get();
 
     return view('index', compact('products'));
 }
