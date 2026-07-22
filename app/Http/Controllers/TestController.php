@@ -44,9 +44,23 @@ public function logout(Request $request)
     public function register(){
         return view("register");
     }
-    public function index()
+    public function index(Request $request)
 {
-    $products = Product::all();
+    $query = Product::query();
+
+    if ($request->filled('keyword')) {
+        $query->where('product_name', 'like', '%' . $request->keyword . '%');
+    }
+
+    if ($request->filled('min_price')) {
+        $query->where('price', '>=', $request->min_price);
+    }
+
+    if ($request->filled('max_price')) {
+        $query->where('price', '<=', $request->max_price);
+    }
+
+    $products = $query->get();
 
     return view('index', compact('products'));
 }
@@ -147,14 +161,20 @@ public function updateProduct(Request $request, $id)
 {
     $product = Product::findOrFail($id);
 
-    $product->update([
+    $data = [
         'product_name' => $request->product_name,
         'price' => $request->price,
         'stock' => $request->stock,
         'description' => $request->description,
-    ]);
+    ];
 
-    return redirect()->route('products.show', $product->id);
+    if ($request->hasFile('img_path')) {
+        $data['img_path'] = $request->file('img_path')->store('products', 'public');
+    }
+
+    $product->update($data);
+
+    return redirect()->route('products.sale.show', $product->id);
 }
 public function purchase(Request $request, $id)
 {
